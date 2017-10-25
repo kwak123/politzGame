@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import GameBoard from './GameBoard.jsx'
+import WinMessage from './WinMessage.jsx'
+import PieceCorral from './PieceCorral.jsx'
+
 import './App.css';
 
 class App extends Component {
@@ -8,17 +12,42 @@ class App extends Component {
         this.state = {
             winStatus: null,
             remainingPieces: null,
-            boardState: null
+            boardState: null,
+            lastMove: null
         };
     }
 
+    // var moveHandler = (move) => {
+    // // this takes the move from the state and
+    //
+    // };
+
     boardStateHandler() {
-        // if the board state is not null, then it updates it with an object.
-        if (this.state.boardState === null) {
-            this.state.boardState = {
-                row1 : [],
-                row2 : [],
-                row3 : [],
+        // if the boardState is null, give the board the board skeleton.
+        if (!this.state.boardState) {
+             this.setState({
+                 // hist canMove
+                 board: {
+                     0: {hist : [], owns : null, canMove : []}, 
+                     1: {hist : [], owns : null, canMove : []},
+                     2: {hist : [], owns : null, canMove : []},
+                     3: {hist : [], owns : null, canMove : []},
+                     4: {hist : [], owns : null, canMove : []},
+                     5: {hist : [], owns : null, canMove : []},
+                     6: {hist : [], owns : null, canMove : []},
+                     7: {hist : [], owns : null, canMove : []},
+                     8: {hist : [], owns : null, canMove : []}
+                 },
+             })
+        } else {
+            // boardState is not null, need to check for new move.
+
+
+
+
+            var ownHandler = (board) => {
+                // this is a helper method that takes in the board object, reads the history
+
             }
         }
 
@@ -30,8 +59,9 @@ class App extends Component {
           <div>
             <GameBoard
                 winStatus={this.state.winStatus}
-                boardStatus={this.state.boardState}
-             />
+                boardState={this.state.boardState}
+                lastMove={this.state.lastMove}
+            />
           </div>
           <div>
               <WinMessage
@@ -41,6 +71,7 @@ class App extends Component {
           <div>
               <PieceCorral
                   boardStatus={this.state.boardState}
+                  lastMove={this.state.lastMove}
               />
           </div>
 
