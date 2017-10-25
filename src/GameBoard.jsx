@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 class GameBoard extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
+        this.props = props;
+        console.log(props);
+        this.state = {gameBoard: this.gameBoard};
     }
 
     render() {
